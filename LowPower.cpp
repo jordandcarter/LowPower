@@ -1129,6 +1129,8 @@ void	LowPowerClass::powerExtStandby(period_t period, adc_t adc, bod_t bod,
 ISR (WDT_vect)
 {
 	// WDIE & WDIF is cleared in hardware upon entering this ISR
+  _mcucr = MCUCR;
+  MCUCR = 0;
 	wdt_disable();
 }
 
@@ -1173,6 +1175,13 @@ void	LowPowerClass::standby()
 	__DSB();
 	__WFI();
 }
+
+volatile byte _mcucr = 0;
+byte LowPowerClass::mcucr()
+{
+  return _mcucr;
+}
+
 
 #else
 	#error "Please ensure chosen MCU is ATSAMD21G18A."

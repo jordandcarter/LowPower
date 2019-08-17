@@ -152,6 +152,8 @@ class LowPowerClass
 			void	powerSave(period_t period, adc_t adc, bod_t bod, timer2_t timer2) __attribute__((optimize("-O1")));
 			void	powerStandby(period_t period, adc_t adc, bod_t bod) __attribute__((optimize("-O1")));
 			void	powerExtStandby(period_t period, adc_t adc, bod_t bod, timer2_t timer2) __attribute__((optimize("-O1")));
+
+      byte mcusr();
 		
 		#elif defined (__arm__)
 			
